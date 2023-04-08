@@ -7,22 +7,18 @@ const axios = require('axios');
 const url = 'mongodb+srv://amrit1254:Rijju1234@cluster0.mtbkfpu.mongodb.net/mydb?retryWrites=true&w=majority';
 
 const client = new MongoClient(url);
+app.get('/', (req,res)=>{
+  res.send(`<a href="/healthdata">Healthdata</a>`)
+})
 
-app.get('/healthdata', (req, res) => {
-  res.send('triggered');
-  client.connect((err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error connecting to database');
-      return;
-    }
+app.get('/healthdata', async (req, res) => {
+  try {
+    await client.connect();
     const db = client.db('mydb');
-    db.collection('Healthsystem').find().toArray()
-  .then(result => {
+    const result = await db.collection('Healthsystem').find().toArray();
     const data = [['Timestamp', 'Weight (kg)', 'Oxygen (%)', 'Heart Rate (bpm)']];
     result.forEach(function(doc) {
       data.push([doc.ts, doc.sensorData[0].weight.value, doc.sensorData[0].oxygen.value, doc.sensorData[0].heartRate.value]);
-      res.send(result);
     });
 
     google.charts.load('current', {'packages':['bar']});
@@ -33,17 +29,13 @@ app.get('/healthdata', (req, res) => {
     });
 
     console.log(result);
-    
-  })
-  .catch(err => {
+    res.send(JSON.stringify(data));
+  } catch (err) {
     console.error(err);
     res.status(500).send('Error retrieving data from database');
-  });
-
-  });
+  }
 });
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+app.listen(3001, () => {
+  console.log('Server listening on port 3001');
 });
-
