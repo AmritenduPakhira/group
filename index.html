@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Health System Data Chart</title>
+    <!-- Load the Google Charts library -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // Define the function to draw the chart
+      function drawChart(data) {
+        // Create a DataTable object from the JavaScript array
+        var dataTable = google.visualization.arrayToDataTable(data);
+        // Define the chart options
+        var options = {
+          chart: {
+            title: 'Health System Data',
+            subtitle: 'Weight, Oxygen, and Heart Rate',
+          },
+          bars: 'vertical',
+          vAxis: {title: 'Values'},
+          hAxis: {title: 'Timestamp'},
+          height: 400,
+          colors: ['#1b9e77', '#d95f02', '#7570b3']
+        };
+        // Create a new Bar chart object and draw it on the web page
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(dataTable, google.charts.Bar.convertOptions(options));
+      }
+      // Load the Google Charts library and fetch the data from the server
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/healthdata', true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            // Parse the JSON response into a JavaScript array
+            var response = JSON.parse(xhr.responseText);
+            var data = [['Timestamp', 'Weight (kg)', 'Oxygen (%)', 'Heart Rate (bpm)']];
+            for (var i = 0; i < response.length; i++) {
+              data.push([response[i].ts, response[i].sensorData[0].weight.value, response[i].sensorData[0].oxygen.value, response[i].sensorData[0].heartRate.value]);
+            }
+            // Call the drawChart function with the data
+            drawChart(data);
+          }
+        };
+        xhr.send();
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Display the chart on the web page -->
+    <div id="chart_div"></div>
+  </body>
+</html>

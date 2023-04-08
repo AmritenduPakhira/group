@@ -1,0 +1,127 @@
+[
+     {
+        "id": 0,
+        "name": "Amritendu",
+        "sensorData": [
+            {
+                "ts": "1529542230",
+                "weight": {
+                    "value": 60,
+                    "unit": "kg"
+                },
+                "oxygen": {
+                    "value": 98,
+                    "unit": "%"
+                },
+                "heartRate": {
+                    "value": 72,
+                    "unit": "bpm"
+                },
+                "loc": {
+                    "lat": -37.846740,
+                    "lon": 145.115113
+                }
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Madhav",
+        "sensorData": [
+            {
+                "ts": "1529542230",
+                "weight": {
+                    "value": 69,
+                    "unit": "kg"
+                },
+                "oxygen": {
+                    "value": 98,
+                    "unit": "%"
+                },
+                "heartRate": {
+                    "value": 72,
+                    "unit": "bpm"
+                },
+                "loc": {
+                    "lat": -37.846740,
+                    "lon": 145.115113
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Saatvik",
+        "sensorData": [
+            {
+                "ts": "1529542230",
+                "weight": {
+                    "value": 80,
+                    "unit": "kg"
+                },
+                "oxygen": {
+                    "value": 98,
+                    "unit": "%"
+                },
+                "heartRate": {
+                    "value": 72,
+                    "unit": "bpm"
+                },
+                "loc": {
+                    "lat": -37.846740,
+                    "lon": 145.115113
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Nilanjan",
+        "sensorData": [
+            {
+                "ts": "1529542230",
+                "weight": {
+                    "value": 54,
+                    "unit": "kg"
+                },
+                "oxygen": {
+                    "value": 98,
+                    "unit": "%"
+                },
+                "heartRate": {
+                    "value": 72,
+                    "unit": "bpm"
+                },
+                "loc": {
+                    "lat": -37.846740,
+                    "lon": 145.115113
+                }
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Vibho",
+        "sensorData": [
+            {
+                "ts": "1529542230",
+                "weight": {
+                    "value": 88,
+                    "unit": "kg"
+                },
+                "oxygen": {
+                    "value": 98,
+                    "unit": "%"
+                },
+                "heartRate": {
+                    "value": 72,
+                    "unit": "bpm"
+                },
+                "loc": {
+                    "lat": -37.846740,
+                    "lon": 145.115113
+                }
+            }
+        ]
+    }
+]
